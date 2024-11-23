@@ -3,22 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enable Gist Checkboxes</title>
+    <title>Leagues 5</title>
 </head>
 <body>
     <script src="https://gist.github.com/janjulius/6a94225c17fd2d0363eea8513fe5a9b7.js"></script>
 
     <script>
-        // Wait for the Gist to load
-        window.addEventListener('load', () => {
-            // Select all checkboxes within the Gist container
+        // Unique key to identify this Gist's checkbox state
+        const GIST_KEY = "gist-checkboxes";
+
+        // Function to load checkbox states from localStorage
+        function loadCheckboxStates() {
+            const savedStates = JSON.parse(localStorage.getItem(GIST_KEY)) || {};
+            return savedStates;
+        }
+
+        // Function to save checkbox states to localStorage
+        function saveCheckboxStates(states) {
+            localStorage.setItem(GIST_KEY, JSON.stringify(states));
+        }
+
+        // Function to enable checkboxes and restore their states
+        function enableAndRestoreCheckboxes() {
             const gistContainer = document.querySelector('.gist');
-            if (gistContainer) {
-                const checkboxes = gistContainer.querySelectorAll('input[type="checkbox"]');
-                checkboxes.forEach(checkbox => {
-                    checkbox.disabled = false; // Enable the checkbox
+            if (!gistContainer) return;
+
+            const checkboxes = gistContainer.querySelectorAll('input[type="checkbox"]');
+            const savedStates = loadCheckboxStates();
+
+            checkboxes.forEach((checkbox, index) => {
+                checkbox.disabled = false; // Enable the checkbox
+                
+                // Restore state if saved
+                if (index in savedStates) {
+                    checkbox.checked = savedStates[index];
+                }
+
+                // Save state on change
+                checkbox.addEventListener('change', () => {
+                    const newStates = loadCheckboxStates();
+                    newStates[index] = checkbox.checked; // Save the new state
+                    saveCheckboxStates(newStates);
                 });
-            }
+            });
+        }
+
+        // Wait for the Gist to load before enabling checkboxes
+        window.addEventListener('load', () => {
+            enableAndRestoreCheckboxes();
         });
     </script>
 </body>
