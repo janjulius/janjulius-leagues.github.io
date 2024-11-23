@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leagues 5</title>
+    <title>Enable and Remember Gist Checkboxes with Dark Mode</title>
+    <style>
+        /* Light mode (default) */
+        body {
+            background-color: white;
+            color: black;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        /* Dark mode toggle button */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
+    <button class="dark-mode-toggle">Toggle Dark Mode</button>
+    
     <script src="https://gist.github.com/janjulius/6a94225c17fd2d0363eea8513fe5a9b7.js"></script>
 
     <script>
@@ -48,8 +84,34 @@
             });
         }
 
-        // Wait for the Gist to load before enabling checkboxes
-        window.addEventListener('load', () => {
+        // Dark mode toggle functionality
+        const DARK_MODE_KEY = "dark-mode-enabled";
+
+        function applyDarkModePreference() {
+            const isDarkMode = localStorage.getItem(DARK_MODE_KEY) === "true";
+            document.body.classList.toggle("dark-mode", isDarkMode);
+            updateButtonLabel(isDarkMode);
+        }
+
+        function toggleDarkMode() {
+            const isDarkMode = document.body.classList.contains("dark-mode");
+            const newDarkModeState = !isDarkMode;
+            document.body.classList.toggle("dark-mode", newDarkModeState);
+            localStorage.setItem(DARK_MODE_KEY, newDarkModeState);
+            updateButtonLabel(newDarkModeState);
+        }
+
+        function updateButtonLabel(isDarkMode) {
+            const button = document.querySelector(".dark-mode-toggle");
+            button.textContent = isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode";
+        }
+
+        // Attach dark mode toggle event listener
+        document.querySelector(".dark-mode-toggle").addEventListener("click", toggleDarkMode);
+
+        // Wait for the Gist to load and initialize functionalities
+        window.addEventListener("load", () => {
+            applyDarkModePreference();
             enableAndRestoreCheckboxes();
         });
     </script>

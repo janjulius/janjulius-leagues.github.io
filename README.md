@@ -145,7 +145,7 @@ Go south towards swamp
 
 Go towards the shack and enter Zanaris
 Use the Fairy ring and go to **DIS**
-
+___
 ### Wizard's tower
 
 **ENTER** Wizard's tower and continue Rune Mysteries quest (Seridor in the basement ![alt text](https://oldschool.runescape.wiki/images/Quick_chat_button.png?cf91b) (1, 2, 1))
@@ -160,5 +160,88 @@ Use the Fairy ring and go to **DIS**
 
 Use a Fairy Ring<br>
 Bury Some Bones</details>
-
+___
 ### Draynor
+
+**BANK** EVERYTHING
+
+Take: 
+- 5 Wines (buy them, if none, unlucky)
+- 2 Buckets
+- Air talisman
+- Pot
+- Coins
+- Dramen staff
+- Axe
+- 1 set of logs if no knife
+_______
+
+* [ ] Buy wines
+* [ ] **GRIND** 10 laps of Draynor course<br>
+~~* [ ] Get grain task from Wise old man (re-roll till you get it)~~
+~~* [ ] Get grain from the field east, try chop the tree while there (if not too busy)~~
+* [ ] Insult Aggie the witch (![alt text](https://oldschool.runescape.wiki/images/Quick_chat_button.png?cf91b) 3)
+* [ ] Start Vampyre slayer talk to Morgan (![alt text](https://oldschool.runescape.wiki/images/Quick_chat_button.png?cf91b) 1)
+* [ ] Take garlic upstairs
+
+<details><summary>Completes tasks (60 pts)</summary>
+Achieve Your First Level 20
+
+Complete the Draynor Agility Course<br>
+Insult Aggie the Witch<br>
+Complete 10 Laps of the Draynor Agility Course<br>
+
+</details>
+
+___
+### Draynor manor
+<details><summary>Completes tasks (10 pts)</summary>
+Get a chair to follow you
+
+</details>
+
+Enter manor
+
+- [ ] Get a chair to follow you, there are some on the 2nd floor too.
+- [ ] Leave and take the spade if you can
+
+Move to wheat field south east of manor
+
+___
+### Lumbridge round 2
+
+<details><summary>Completes tasks (40/50 pts)</summary>
+Chop a log from a potato tree (maybe)
+Cry in a wheat field
+Make some Flour
+Use the Range in Lumbridge Castle
+Spin a Ball of Wool
+</details>
+
+
+ - [ ] Cry in wheat field on the way back to lumbridge
+ - [ ] Try to cut the tree in the field if not too busy
+ - [ ] **PICK** wheat
+ - [ ] Make flour
+ - [ ] Milk cow twice 
+ - [ ] Take egg from coop east of mill
+ - [ ] Kill chicken and pick up the raw chicken
+
+Move into lumbridge
+
+- [ ] **BUY** from store:
+    - Shears
+    - Knife if you dont have one, cut logs to arrow shafts
+
+- [ ] **SHEAR** 4 sheep
+- [ ] Home teleport and complete cook's assistant
+- [ ] **COOK** chicken on range
+- [ ] **SPIN** wool into balls
+
+____
+### Stronghold of security
+
+Go to the graveyard talk to Count to go to barbarian village (![alt text](https://oldschool.runescape.wiki/images/Quick_chat_button.png?cf91b) 4, 1)
+
+- [ ] Complete stronghold and equip fancy boots
+- [ ] **MINE** 10 tin ore, only have to keep 1
