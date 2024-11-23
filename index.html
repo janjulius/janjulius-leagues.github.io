@@ -1,1 +1,25 @@
-<script src="https://gist.github.com/janjulius/6a94225c17fd2d0363eea8513fe5a9b7.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enable Gist Checkboxes</title>
+</head>
+<body>
+    <script src="https://gist.github.com/janjulius/6a94225c17fd2d0363eea8513fe5a9b7.js"></script>
+
+    <script>
+        // Wait for the Gist to load
+        window.addEventListener('load', () => {
+            // Select all checkboxes within the Gist container
+            const gistContainer = document.querySelector('.gist');
+            if (gistContainer) {
+                const checkboxes = gistContainer.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(checkbox => {
+                    checkbox.disabled = false; // Enable the checkbox
+                });
+            }
+        });
+    </script>
+</body>
+</html>
