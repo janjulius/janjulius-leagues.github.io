@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enable and Remember Gist Checkboxes with Dark Mode</title>
     <style>
-        /* Light mode (default) */
+        /* Default Light Mode */
         body {
             background-color: white;
             color: black;
@@ -13,13 +13,13 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Dark mode */
+        /* Dark Mode */
         body.dark-mode {
             background-color: #121212;
             color: white;
         }
 
-        /* Dark mode toggle button */
+        /* Dark Mode Toggle Button */
         .dark-mode-toggle {
             position: fixed;
             top: 10px;
@@ -45,21 +45,18 @@
     <script src="https://gist.github.com/janjulius/6a94225c17fd2d0363eea8513fe5a9b7.js"></script>
 
     <script>
-        // Unique key to identify this Gist's checkbox state
+        // Gist Checkbox Persistence
         const GIST_KEY = "gist-checkboxes";
 
-        // Function to load checkbox states from localStorage
         function loadCheckboxStates() {
             const savedStates = JSON.parse(localStorage.getItem(GIST_KEY)) || {};
             return savedStates;
         }
 
-        // Function to save checkbox states to localStorage
         function saveCheckboxStates(states) {
             localStorage.setItem(GIST_KEY, JSON.stringify(states));
         }
 
-        // Function to enable checkboxes and restore their states
         function enableAndRestoreCheckboxes() {
             const gistContainer = document.querySelector('.gist');
             if (!gistContainer) return;
@@ -68,29 +65,26 @@
             const savedStates = loadCheckboxStates();
 
             checkboxes.forEach((checkbox, index) => {
-                checkbox.disabled = false; // Enable the checkbox
-                
-                // Restore state if saved
+                checkbox.disabled = false;
                 if (index in savedStates) {
                     checkbox.checked = savedStates[index];
                 }
-
-                // Save state on change
                 checkbox.addEventListener('change', () => {
                     const newStates = loadCheckboxStates();
-                    newStates[index] = checkbox.checked; // Save the new state
+                    newStates[index] = checkbox.checked;
                     saveCheckboxStates(newStates);
                 });
             });
         }
 
-        // Dark mode toggle functionality
+        // Dark Mode
         const DARK_MODE_KEY = "dark-mode-enabled";
 
         function applyDarkModePreference() {
             const isDarkMode = localStorage.getItem(DARK_MODE_KEY) === "true";
             document.body.classList.toggle("dark-mode", isDarkMode);
             updateButtonLabel(isDarkMode);
+            updateGistStyles(isDarkMode);
         }
 
         function toggleDarkMode() {
@@ -99,6 +93,7 @@
             document.body.classList.toggle("dark-mode", newDarkModeState);
             localStorage.setItem(DARK_MODE_KEY, newDarkModeState);
             updateButtonLabel(newDarkModeState);
+            updateGistStyles(newDarkModeState);
         }
 
         function updateButtonLabel(isDarkMode) {
@@ -106,10 +101,30 @@
             button.textContent = isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode";
         }
 
-        // Attach dark mode toggle event listener
-        document.querySelector(".dark-mode-toggle").addEventListener("click", toggleDarkMode);
+        // Update Gist Styles for Dark Mode
+        function updateGistStyles(isDarkMode) {
+            const gistIframe = document.querySelector('iframe');
+            if (!gistIframe) return;
 
-        // Wait for the Gist to load and initialize functionalities
+            gistIframe.onload = () => {
+                const gistDoc = gistIframe.contentDocument || gistIframe.contentWindow.document;
+                const gistStyle = gistDoc.createElement('style');
+                gistStyle.textContent = `
+                    body {
+                        background-color: ${isDarkMode ? "#121212" : "white"};
+                        color: ${isDarkMode ? "white" : "black"};
+                    }
+                    .gist .file {
+                        background-color: ${isDarkMode ? "#1E1E1E" : "white"} !important;
+                        color: ${isDarkMode ? "white" : "black"} !important;
+                    }
+                `;
+                gistDoc.head.appendChild(gistStyle);
+            };
+        }
+
+        // Initialize
+        document.querySelector(".dark-mode-toggle").addEventListener("click", toggleDarkMode);
         window.addEventListener("load", () => {
             applyDarkModePreference();
             enableAndRestoreCheckboxes();
